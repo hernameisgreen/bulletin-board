@@ -9,17 +9,17 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable=['content'];
+    protected $guarded=[];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
     public function board(){
         return $this->belongsTo(Board::class);
     }
 
-    public function comments(){
+    public function comment(){
         return $this->hasMany(Comment::class);
-    }
-
-    public function user(){
-        return $this->belongsTo(User::class);
     }
 }
