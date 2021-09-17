@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.show');
-});
-Route::get('/login', function () {
-    return view('sessions.create');
-});
-Route::get('/register',function(){
-    return view('register.create');
-});
+Route::get('/', [IndexController::class,'show'])->name('home');
+
+Route::get('/{board:slug}',[PostController::class,'index']);
+
+Route::get('{boardSlug}/posts/{slug}',[PostController::class,'show']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

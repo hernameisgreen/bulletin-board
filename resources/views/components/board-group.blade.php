@@ -1,9 +1,36 @@
-<div class="board-group">
-    <span class="text-green-500 underline">Interests</span>
-    <ul>
-        <li>Technology</li>
-        <li>History & Humanities</li>
-        <li>Animals & Nature</li>
-        <li>Traditional Games</li>
-    </ul>
-</div>
+@props(['boards'])
+
+@php
+
+$count = 1;
+
+@endphp
+
+
+@foreach ($boards as $board)
+    @if ($count % 4 == 1)
+
+        <div class="board-group">
+            <ul>
+    @endif
+
+    <a href="/{{$board->slug}}">
+        <li>{{ $board->name }}</li>
+    </a>
+    @if ($count % 4 == 0)
+
+        </ul>
+        </div>
+    @endif
+
+    @php
+    $count++;
+    @endphp
+
+@endforeach
+
+@if ($count % 4 !=1)
+
+        </ul>
+        </div>
+@endif

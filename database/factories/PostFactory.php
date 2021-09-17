@@ -26,6 +26,7 @@ class PostFactory extends Factory
             'title'=>$this->faker->sentence(),
             'slug'=>$this->faker->slug(),
             'board_id'=>rand(1,10),
+            'user_id'=>rand(1,10),
             'content'=>$this->faker->paragraphs(4,true),
         ];
     }
