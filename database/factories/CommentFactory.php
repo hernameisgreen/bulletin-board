@@ -30,6 +30,7 @@ class CommentFactory extends Factory
             // 'thread_id'=>Thread::factory(),
             // 'user_id'=>User::factory(),
             'post_id'=>rand(1,10),
+            'board_id'=>rand(1,10),
             'user_id'=>rand(1,10),
             'content'=>$this->faker->paragraph()
         ];

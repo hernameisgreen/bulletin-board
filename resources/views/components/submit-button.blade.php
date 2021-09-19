@@ -1,0 +1,1 @@
+<input type="submit" value="Submit" class="w-full h-10 rounded-full bg-green-400 hover:bg-green-500 cursor-pointer">

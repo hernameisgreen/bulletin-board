@@ -14,7 +14,7 @@ $count = 1;
             <ul>
     @endif
 
-    <a href="/{{$board->slug}}">
+    <a href="/boards/{{$board->slug}}">
         <li>{{ $board->name }}</li>
     </a>
     @if ($count % 4 == 0)

@@ -12,12 +12,11 @@ class PostController extends Controller
     //
     function index($slug){
         $board=Board::where('slug',$slug)->first();
-        $board_name=$board->name;
         $posts=Post::where('board_id',$board->id)->paginate(10);
          return view('posts.index',
          [
             'posts'=>$posts,
-            'board_name'=>$board_name,
+            'board'=>$board,
         ]);
     }
 
@@ -31,5 +30,32 @@ class PostController extends Controller
             'comments'=>$comments,
             'commentCount'=>$commentCount
         ]);
+    }
+
+    function create($slug){
+        $board=Board::where('slug',$slug)->first();
+        return view('posts.create',[
+            'board'=>$board
+        ]);
+    }
+
+    function store($slug){
+        request()->validate([
+            'title'=>['required','min:3','max:255','string','unique:posts'],
+            'content'=>['required','min:5','max:255'],
+            'img'=>['nullable','string','max:255','mimes:jpg,bmp,png'],
+        ]);
+
+        $board=Board::where('slug',$slug)->first();
+
+        $post=Post::create([
+            'board_id'=>$board->id,
+            'user_id'=>auth()->user()->id,
+            'title'=>request('title'),
+            'content'=>request('content'),
+            'img'=>request()->file('img')->store('posts_image')
+        ]);
+
+        redirect('/boards/{'.$slug.'}');
     }
 }

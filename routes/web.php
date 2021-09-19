@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PostCommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class,'show'])->name('home');
 
-Route::get('/{board:slug}',[PostController::class,'index']);
+Route::get('/boards/{board:slug}',[PostController::class,'index']);
+Route::get('/boards/{boardSlug}/posts/{slug}',[PostController::class,'show']);
 
-Route::get('{boardSlug}/posts/{slug}',[PostController::class,'show']);
+Route::get('/boards/{board:slug}/posts/',[PostController::class,'create']);
+Route::post('/boards/{board:slug}/posts/',[PostController::class,'store']);
+Route::post('/boards/{boardSlug}/posts/{slug}',[PostCommentController::class,'store'])->name('saveComment');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
