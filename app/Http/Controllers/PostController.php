@@ -5,10 +5,12 @@ use App\Models\Board;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
+    
     //
     function index($slug){
         $board=Board::where('slug',$slug)->first();
@@ -20,8 +22,8 @@ class PostController extends Controller
         ]);
     }
 
-    function show($boardSlug,$slug){
-        $post=Post::where('slug',$slug)->first();
+    function show($slug,$serial){
+        $post=Post::where('serial',$serial)->first();
         $comments=Comment::where('post_id',$post->id)->orderBy('created_at','ASC')->get();
         $commentCount=$comments->count();
 
@@ -41,21 +43,31 @@ class PostController extends Controller
 
     function store($slug){
         request()->validate([
-            'title'=>['required','min:3','max:255','string','unique:posts'],
+            //'title'=>['required','min:5','max:255','string','regex:/^[a-zA-Z0-9\s]+$/'],
+            'title'=>['required','min:5','max:255','string'],
             'content'=>['required','min:5','max:255'],
-            'img'=>['nullable','string','max:255','mimes:jpg,bmp,png'],
+            'img'=>['image','max:800000'],
         ]);
 
         $board=Board::where('slug',$slug)->first();
+        
+        if(request('img')){
+            $img=request()->file('img')->store('posts_image');
+        }else{
+            $img="";
+        }
 
         $post=Post::create([
             'board_id'=>$board->id,
             'user_id'=>auth()->user()->id,
             'title'=>request('title'),
+            'serial'=>Str::random(7),
+            'slug'=>Str::slug(request('title'),"-"),
             'content'=>request('content'),
-            'img'=>request()->file('img')->store('posts_image')
+            'img'=>$img
         ]);
 
-        redirect('/boards/{'.$slug.'}');
+        return redirect()->route('post.index',[$slug,$slug]);
     }
+
 }

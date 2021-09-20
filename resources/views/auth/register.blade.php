@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{asset('img/banter-logo.png')}}" alt="Banter Logo" class="h-20">
             </a>
         </x-slot>
 
@@ -35,7 +35,7 @@
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
-
+                <p class="text-xs text-indigo-500">Your password must contain at least one uppercase letter and a number</p>
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"

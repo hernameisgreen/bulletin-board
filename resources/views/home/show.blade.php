@@ -23,7 +23,7 @@
                         </div>
                         <div class="boards-list p-6 flex justify-around">
                            <p class="font-semibold">Total Posts: <span class="font-normal">{{$postsCount}}</span></p>
-                           <p class="font-semibold">Current Users: <span class="font-normal">1,000</span></p>
+                           <p class="font-semibold">Total Users: <span class="font-normal">{{$usersCount}}</span></p>
                         </div>
                     </div>
                 </div>

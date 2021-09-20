@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Model;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class PostFactory extends Factory
 {
@@ -25,6 +26,7 @@ class PostFactory extends Factory
         return [
             'title'=>$this->faker->sentence(),
             'slug'=>$this->faker->slug(),
+            'serial'=>Str::random(7),
             'board_id'=>rand(1,10),
             'user_id'=>rand(1,10),
             'content'=>$this->faker->paragraphs(4,true),
