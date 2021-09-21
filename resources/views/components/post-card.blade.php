@@ -2,7 +2,7 @@
 
 <div class="post">
     <div class="post-block bg-green-100  flex gap-x-4 mb-2 border-2 border-green-200">
-        <img src="{{ asset('storage/' . $post->img) }}">
+        <img src="{{ asset('storage/' . $post->img) }}" >
         <div class="post-content p-4">
             <h1 class="font-semibold text-lg">{{ $post->title }}</h1>
             <p class="text-sm"><span class="text-green-700">{{ $post->user->username }}</span><span
@@ -11,7 +11,7 @@
             <h2 class="mt-5 font-semibold text-lg text-indigo-500">What do you think?</h2>
 
             @auth
-                <form action="/boards/{{$post->board->slug}}/posts/{{$post->slug}}" method="post" class="mt-4">
+                <form action="/boards/{{$post->board->slug}}/posts/{{$post->serial}}" method="post" class="mt-4">
                     @csrf
                     <x-textarea id="content" name="content" class="w-full"
                         placeholder="Come on, tell us what you think!(wink)">{{ old('content') }}</x-textarea>

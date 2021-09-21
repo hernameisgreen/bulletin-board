@@ -20,6 +20,8 @@ class PostCommentController extends Controller
         $user=auth()->user()->id;
         $post=Post::where('serial',$serial)->value('id');
 
+        //dd($post);
+
         $comment=Comment::create([
             'board_id'=>$board,
             'user_id'=>$user,

@@ -5,7 +5,7 @@
     
 <div class="post">
     <div class="post-block bg-green-100  flex gap-x-4 mb-2 border-2 border-green-200 max-h-52">
-        <img src="{{ asset('storage/' . $post->img) }}">
+        <img src="{{ asset('storage/' . $post->img) }}" class="w-40">
         <div class="post-content p-4">
             <a href="/boards/{{$post->board->slug}}/posts/{{$post->serial}}">
                 <h1 class="font-semibold text-lg">{{$post->title}}</h1>
