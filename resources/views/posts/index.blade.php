@@ -14,4 +14,9 @@
                    
             </main>
         </x-layout>
+        <div class="max-w-6xl mx-auto pb-4">
+
+            {{ $posts->links() }}
+      
+        </div>
 </x-settings>

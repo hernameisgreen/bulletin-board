@@ -33,6 +33,7 @@
           <div class="block">
               <x-label for="img" :value="__('Image')" class="mb-2" />
           </div>
+          <img src="{{ asset('storage/' . $post->img)}}" class="rounded-xl ml-6 mb-3" width="100">
           <input type="file" name="img" id="img">
           <p class="text-red-500 text-semibold">{{ $errors->first('img') }}</p>
       </div>

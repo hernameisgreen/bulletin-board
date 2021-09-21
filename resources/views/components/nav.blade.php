@@ -1,5 +1,5 @@
 <header>
-    <div class="header_wrapper h-20 w-10/12 mx-auto  border-2 border-indigo-400 mb-10 grid grid-cols-8 px-4 py-2">
+    <div class="header_wrapper h-20 w-10/12 mx-auto  border-2 bg-indigo-100 mb-10 grid grid-cols-8 px-4 py-2">
        
             <div class="logo col-start-3 col-span-4 mx-auto"><a href="/"><img src="{{asset('img/banter-logo.png')}}" alt="Banter Company Logo" class="h-12"></a></div>
        

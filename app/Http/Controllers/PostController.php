@@ -45,16 +45,15 @@ class PostController extends Controller
         request()->validate([
             //'title'=>['required','min:5','max:255','string','regex:/^[a-zA-Z0-9\s]+$/'],
             'title'=>['required','min:5','max:255','string'],
-            'content'=>['required','min:5','max:255'],
-            'img'=>['image','max:800000'],
+            'content'=>['required','min:5'],
+            'img'=>['required','image','max:800000'],
         ]);
 
         $board=Board::where('slug',$slug)->first();
         
-        if(request('img')){
-            $img=request()->file('img')->store('posts_image');
-        }else{
-            $img="";
+        if(request()->hasFile('img')){
+
+            $img=request()->file('img')->store('posts_image','public');
         }
 
         $post=Post::create([

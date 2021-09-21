@@ -4,7 +4,7 @@
             {{ __('Manage Posts') }}
         </h2>
     </x-slot>
-<div class="max-w-6xl mx-auto mt-4">
+<div class="max-w-8xl mx-auto mt-4">
     @if ($posts->isEmpty())
 
         <h1 class="text-center font-bold text-indigo-500 mt-16">You don't have any posts yet! Come back when you've got some! :)</h1>
@@ -20,9 +20,6 @@
                   <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Title
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Content Excerpt
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Author
@@ -44,13 +41,10 @@
                         
                    
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-4 whitespace-normal w-12">
                         <div>
                          {{$post->title}}
                         </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">{{mb_substr($post->content,0,15).'...'}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <p class="text-gray-900">{{Auth::user()->username}}</p>
@@ -80,4 +74,9 @@
     </div>
 
     @endif
+    <div class="max-w-6xl mx-auto pb-4">
+
+      {{ $posts->links() }}
+
+  </div>
 </x-app-layout>

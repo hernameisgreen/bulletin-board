@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Board::factory(10)->create();
-        Post::factory(10)->create();
-        Comment::factory(20)->create();
+        Post::factory(50)->create();
+        Comment::factory(50)->create();
 
        
     }

@@ -47,12 +47,12 @@ class UserPostController extends Controller
     {
         $attributes=$request->validate([
             'title'=>['required','min:5','max:255','string'],
-            'content'=>['required','min:5','max:255'],
+            'content'=>['required','min:5'],
             'img'=>['image','max:800000'],
         ]);
 
         if ($attributes['img'] ?? false) {
-            $attributes['img'] = request()->file('img')->store('posts_image');
+            $attributes['img'] = request()->file('img')->store('posts_image','public');
         }
 
         $post=Post::where('id',$id)->update($attributes);
